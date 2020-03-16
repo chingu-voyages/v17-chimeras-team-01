@@ -30,11 +30,12 @@ h1 {
   align-items: center;
   list-style: none;
   border-bottom: 1px dashed #5f52fb;
+  padding-right: 0.5rem;
   color: tomato;
 }
 
 .list-item-link {
-  display: block;
+  flex-grow: 1;
   padding: 0.5rem;
   text-decoration: none;
   color: #333;
@@ -47,9 +48,9 @@ h1 {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-
   font-size: 2rem;
   background-color: #5f52fb;
   color: #fff;
   border: 0;
+  cursor: pointer;
 }
