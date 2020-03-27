@@ -4,7 +4,8 @@ body {
 }
 
 .container {
-  max-width: 360px;
+  width: 360px;
+  min-width: 320px;
   background-color: #fff;
   color: #5e5d66;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
@@ -56,7 +57,7 @@ img {
 }
 
 .list-item .close {
-  color: #aaa;
+    color: #aaa;
 }
 
 .list-item:hover .close {
@@ -79,5 +80,5 @@ img {
 }
 
 .list-item-link:hover {
-  width: 82%;
+  width: 83%;
 }
