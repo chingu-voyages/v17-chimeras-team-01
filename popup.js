@@ -24,13 +24,31 @@ function listTabs(tabs) {
     li.appendChild(img);
     li.appendChild(link);
     link.appendChild(closeBtn);
-    let list = document.querySelector("#list");
 
+    li.tabId = tab.id;
     list.appendChild(li);
+  });
+
+  events();
+}
+
+function events() {
+  list.addEventListener("click", function(e) {
+    if (e.target.className === "close") {
+      closeTab(e, e.target.parentElement.parentElement);
+    }
   });
 }
 
+// Remove Tabs
+function closeTab(e, tab) {
+  tab = list.removeChild(tab);
+  chrome.tabs.remove(tab.tabId);
+}
+
 document.addEventListener("DOMContentLoaded", function() {
+  let list = document.querySelector("#list");
+
   // Handler when the DOM is fully loaded
   chrome.tabs.query({}, listTabs);
 });
