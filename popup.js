@@ -34,16 +34,16 @@ function listTabs(tabs) {
 
 function events() {
   list.addEventListener("click", function(e) {
-    if (e.target.className === "close") {
-      closeTab(e, e.target.parentElement.parentElement);
-    }
+    closeTab(e, e.target.parentElement.parentElement);
   });
 }
 
 // Remove Tabs
 function closeTab(e, tab) {
-  tab = list.removeChild(tab);
-  chrome.tabs.remove(tab.tabId);
+  if (e.target.className === "close") {
+    tab = list.removeChild(tab);
+    chrome.tabs.remove(tab.tabId);
+  }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
