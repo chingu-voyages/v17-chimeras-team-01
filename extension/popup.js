@@ -4,20 +4,20 @@ const Container = document.getElementById('container')
 // current tab button
 const CurrentTabButton = document.createElement('button')
 const CurrentTabButtonText = document.createTextNode('save current tab')
-CurrentTabButton.setAttribute('id', 'current-tab')
+CurrentTabButton.id = 'current-tab'
 CurrentTabButton.appendChild(CurrentTabButtonText)
 Container.appendChild(CurrentTabButton)
 
 // all tab button
 const AllTabsButton = document.createElement('button')
 const AllTabsButtonText = document.createTextNode('save all tabs')
-AllTabsButton.setAttribute('id', 'all-tabs')
+AllTabsButton.id = 'all-tabs'
 AllTabsButton.appendChild(AllTabsButtonText)
 Container.appendChild(AllTabsButton)
 
 const Notice = document.createElement('p')
 const NoticeText = document.createTextNode('saved!')
-Notice.setAttribute('id', 'notice')
+Notice.id = 'notice'
 Notice.appendChild(NoticeText)
 
 const OptionsLinkText = 'browse the saved tabs'
