@@ -23,9 +23,25 @@ Notice.appendChild(NoticeText)
 const OptionsLinkText = 'browse the saved tabs'
 
 function ToOptionsPage () {
-  const TopOptionPage = document.querySelector('.to-option-page')
+  const TopOptionPage = document.getElementsByClassName('to-option-page')[0]
   TopOptionPage.addEventListener('click', function () {
     chrome.runtime.openOptionsPage()
+  })
+}
+
+function StoreLinksData () {
+  chrome.tabs.query({}, function (tabs) {
+    let stock = [] // eslint-disable-line
+    for (const i in tabs) {
+      const t = tabs[i]
+      const id = `data-${i}`
+      const src = `chrome://favicon/${t.url}`
+      const title = `${t.title}`
+      const url = t.url
+      stock.push({ id, src, title, url })
+    }
+
+    chrome.storage.local.set({ stock })
   })
 }
 
@@ -41,6 +57,7 @@ AllTabsButton.addEventListener('click', function () {
     AllTabsButton.innerHTML = OptionsLinkText
     Container.insertBefore(Notice, AllTabsButton)
     CurrentTabButton.style.display = 'none'
+    StoreLinksData()
     ToOptionsPage()
   }
 })
