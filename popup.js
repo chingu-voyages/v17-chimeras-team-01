@@ -28,8 +28,6 @@ function listTabs(tabs) {
     li.tabId = tab.id;
     list.appendChild(li);
   });
-  const li = document.querySelectorAll(".list-item");
-  console.log(li);
 
   events();
 }
@@ -56,5 +54,5 @@ document.addEventListener("DOMContentLoaded", function() {
   let list = document.querySelector("#list");
 
   // Handler when the DOM is fully loaded
-  chrome.tabs.query({}, listTabs);
+  chrome.tabs.query({ currentWindow: true }, listTabs);
 });
