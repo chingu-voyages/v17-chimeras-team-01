@@ -6,7 +6,7 @@ function listTabs(tabs) {
     let title = tab.title || url;
 
     let li = document.createElement("li");
-    li.className = "list-item";
+    li.className = "list-item " + (tab.selected ? "selected" : "");
 
     let img = document.createElement("img");
     if (favicon) img.src = favicon;
@@ -28,6 +28,8 @@ function listTabs(tabs) {
     li.tabId = tab.id;
     list.appendChild(li);
   });
+  const li = document.querySelectorAll(".list-item");
+  console.log(li);
 
   events();
 }
@@ -35,6 +37,10 @@ function listTabs(tabs) {
 function events() {
   list.addEventListener("click", function(e) {
     closeTab(e, e.target.parentElement.parentElement);
+  });
+
+  list.addEventListener("click", function(e) {
+    chrome.tabs.update(e.target.parentElement.tabId, { selected: true });
   });
 }
 
