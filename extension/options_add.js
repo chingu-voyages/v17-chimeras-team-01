@@ -1,8 +1,8 @@
 // for insert nodes
-const Links = document.getElementById('links')
+const links = document.getElementById('links')
 
 // get stored data from chrome.storage
-function GetStoredData () {
+function getStoredData () {
   chrome.storage.local.get(['stock'], function (data) {
     // store elements
     const fragment = document.createDocumentFragment()
@@ -42,7 +42,7 @@ function GetStoredData () {
       fragment.appendChild(li)
     })
     // append all element
-    Links.appendChild(fragment)
+    links.appendChild(fragment)
   })
 }
-GetStoredData()
+getStoredData()

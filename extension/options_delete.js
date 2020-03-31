@@ -1,7 +1,7 @@
 // delete a clicked link
-const DefinedDeleteButton = Array.from(document.getElementsByClassName('delete-button'))
+const definedDeleteButton = Array.from(document.getElementsByClassName('delete-button'))
 
-DefinedDeleteButton.map((link, i) => {
+definedDeleteButton.map((link, i) => {
   link.addEventListener('click', function (e) {
     // delete one of link tag
     const removedId = link.parentNode
