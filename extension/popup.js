@@ -1,36 +1,56 @@
 // for top tab illust
-const Container = document.getElementById('container')
+const container = document.getElementById('container')
+
+// --------------------------------
+// create default buttons
+// --------------------------------
 
 // current tab button
-const CurrentTabButton = document.createElement('button')
-const CurrentTabButtonText = document.createTextNode('save current tab')
-CurrentTabButton.id = 'current-tab'
-CurrentTabButton.appendChild(CurrentTabButtonText)
-Container.appendChild(CurrentTabButton)
+function createCurrentTabButton () {
+  const currentTabButton = document.createElement('button')
+  const currentTabButtonText = document.createTextNode('save current tab')
+  currentTabButton.id = 'current-tab'
+  currentTabButton.appendChild(currentTabButtonText)
+  container.appendChild(currentTabButton)
+
+  currentTabButton.addEventListener('click', storeCurrentTab, false)
+}
+createCurrentTabButton()
 
 // all tab button
-const AllTabsButton = document.createElement('button')
-const AllTabsButtonText = document.createTextNode('save all tabs')
-AllTabsButton.id = 'all-tabs'
-AllTabsButton.appendChild(AllTabsButtonText)
-Container.appendChild(AllTabsButton)
+function createAllTabButton () {
+  const allTabsButton = document.createElement('button')
+  const allTabsButtonText = document.createTextNode('save all tabs')
+  allTabsButton.id = 'all-tabs'
+  allTabsButton.appendChild(allTabsButtonText)
+  container.appendChild(allTabsButton)
 
-const Notice = document.createElement('p')
-const NoticeText = document.createTextNode('saved!')
-Notice.id = 'notice'
-Notice.appendChild(NoticeText)
+  allTabsButton.addEventListener('click', storeAllTab, false)
+}
+createAllTabButton()
 
-const OptionsLinkText = 'browse the saved tabs'
+// --------------------------------
+// for first eventlisteners
+// --------------------------------
 
-function ToOptionsPage () {
-  const TopOptionPage = document.getElementsByClassName('to-option-page')[0]
-  TopOptionPage.addEventListener('click', function () {
-    chrome.runtime.openOptionsPage()
+// store data to chrome storage
+function storeLinkData () {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tab) {
+    let stock = [] // eslint-disable-line
+    const t = tab[0]
+    const id = 'data-0'
+    const src = `chrome://favicon/${t.url}`
+    const title = `${t.title}`
+    const url = t.url
+    stock.push({ id, src, title, url })
+
+    chrome.storage.local.set({ stock })
   })
 }
 
-function StoreLinksData () {
-  chrome.tabs.query({}, function (tabs) {
+// store all data to chrome storage
+function storeLinksData () {
+  chrome.tabs.query({ }, function (tabs) {
     let stock = [] // eslint-disable-line
     for (const i in tabs) {
       const t = tabs[i]
@@ -45,19 +65,54 @@ function StoreLinksData () {
   })
 }
 
-AllTabsButton.addEventListener('click', function () {
-  if (AllTabsButton.getElementsByClassName('to-option-page').length > 0) {
-    AllTabsButton.classList.remove('to-option-page')
-    CurrentTabButton.classList.remove('hidden-button')
-    AllTabsButton.innerHTML = 'save all tabs'
-    CurrentTabButton.style.display = 'block'
-  } else {
-    AllTabsButton.className = 'to-option-page'
-    CurrentTabButton.className = 'hidden-button'
-    AllTabsButton.innerHTML = OptionsLinkText
-    Container.insertBefore(Notice, AllTabsButton)
-    CurrentTabButton.style.display = 'none'
-    StoreLinksData()
-    ToOptionsPage()
+// for click event of current tab
+function storeCurrentTab () {
+  storeLinkData()
+  while (container.firstChild) {
+    container.removeChild(container.firstChild)
   }
-})
+  createNoticeText()
+  createToOptionsButton()
+}
+
+// for click event of all tabs
+function storeAllTab () {
+  storeLinksData()
+  while (container.firstChild) {
+    container.removeChild(container.firstChild)
+  }
+  createNoticeText()
+  createToOptionsButton()
+}
+
+// -----------------------------------------
+// create buttons after first item clicked
+// -----------------------------------------
+
+// notice word after clicking a button
+function createNoticeText () {
+  const notice = document.createElement('p')
+  const noticeText = document.createTextNode('saved!')
+  notice.id = 'notice'
+  notice.appendChild(noticeText)
+  container.appendChild(notice)
+}
+
+// to options page button
+function createToOptionsButton () {
+  const toOptionsButton = document.createElement('button')
+  const toOptionsButtonText = document.createTextNode('browse the saved tabs')
+  toOptionsButtonText.id = 'to-option'
+  toOptionsButton.appendChild(toOptionsButtonText)
+  container.appendChild(toOptionsButton)
+
+  toOptionsButton.addEventListener('click', toOptionsPage, false)
+}
+
+// --------------------------------
+// for second eventlisteners
+// --------------------------------
+
+function toOptionsPage () {
+  chrome.runtime.openOptionsPage()
+}
