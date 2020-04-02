@@ -33,36 +33,64 @@ createAllTabButton()
 // for first eventlisteners
 // --------------------------------
 
-// store data to chrome storage
-function storeLinkData () {
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tab) {
+// common function for two buttons for storing data to chrome storage
+function dataDetail (tabs, i, stock) {
+  const t = tabs[i]
+  const id = `data-${i}`
+  const src = `chrome://favicon/${t.url}`
+  const title = `${t.title}`
+  const url = t.url
+  stock.push({ id, src, title, url })
+}
+
+function storeData (queryOption = { }) {
+  chrome.tabs.query(queryOption, function (tabs) {
     let stock = [] // eslint-disable-line
-    const t = tab[0]
-    const id = 'data-0'
-    const src = `chrome://favicon/${t.url}`
-    const title = `${t.title}`
-    const url = t.url
-    stock.push({ id, src, title, url })
+    if (queryOption !== { }) {
+      for (const i in tabs) {
+        dataDetail(tabs, i, stock)
+      }
+    } else {
+      dataDetail(tabs, 0, stock)
+    }
 
     chrome.storage.local.set({ stock })
   })
 }
 
+// store data to chrome storage
+const queryOption = { active: true, currentWindow: true }
+function storeLinkData () {
+  storeData(queryOption)
+  // chrome.tabs.query({ active: true, currentWindow: true }, function (tab) {
+  //   let stock = [] // eslint-disable-line
+  //   const t = tab[0]
+  //   const id = 'data-0'
+  //   const src = `chrome://favicon/${t.url}`
+  //   const title = `${t.title}`
+  //   const url = t.url
+  //   stock.push({ id, src, title, url })
+
+  //   chrome.storage.local.set({ stock })
+  // })
+}
+
 // store all data to chrome storage
 function storeLinksData () {
-  chrome.tabs.query({ }, function (tabs) {
-    let stock = [] // eslint-disable-line
-    for (const i in tabs) {
-      const t = tabs[i]
-      const id = `data-${i}`
-      const src = `chrome://favicon/${t.url}`
-      const title = `${t.title}`
-      const url = t.url
-      stock.push({ id, src, title, url })
-    }
+  storeData()
+  // chrome.tabs.query({ }, function (tabs) {
+  //   let stock = [] // eslint-disable-line
+  //   for (const i in tabs) {
+  //     const t = tabs[i]
+  //     const id = `data-${i}`
+  //     const src = `chrome://favicon/${t.url}`
+  //     const title = `${t.title}`
+  //     const url = t.url
+  //     stock.push({ id, src, title, url })
+  //   }
 
-    chrome.storage.local.set({ stock })
-  })
+  //   chrome.storage.local.set({ stock })
+  // })
 }
 
 // for click event of current tab
