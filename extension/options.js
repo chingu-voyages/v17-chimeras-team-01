@@ -1,5 +1,5 @@
 // for insert nodes
-const links = document.getElementById('links')
+const outsideLinks = document.getElementById('outside-links')
 
 function createBase () {
   document.addEventListener('DOMContentLoaded', function () {
@@ -44,7 +44,7 @@ function createBase () {
           fragment.appendChild(li)
         })
         // append all element
-        links.appendChild(fragment)
+        outsideLinks.appendChild(fragment)
       })
     }
     getStoredData()
@@ -77,9 +77,9 @@ function deleteLinks () {
       // if (definedDeleteButtons.length) {
       // for (let i = definedDeleteButtons.length; i >= 0; i--) {
       if (e.target) {
-        if (links.children.length === 0) {
+        if (outsideLinks.children.length === 0) {
           const noLink = document.createTextNode('there is no link')
-          links.appendChild(noLink)
+          outsideLinks.appendChild(noLink)
         } else { console.log('something happening') }
       }
       //   break
