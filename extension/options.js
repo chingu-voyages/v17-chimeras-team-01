@@ -22,10 +22,12 @@ function getStoredData () {
       li.id = link.id
 
       const icon = document.createElement('img')
+      icon.className = 'saved-link-icon'
       icon.src = link.src
       icon.alt = `${link.title}`
 
       const a = document.createElement('a')
+      a.className = 'saved-link-title'
       a.href = link.url
       a.target = '_blank'
 
