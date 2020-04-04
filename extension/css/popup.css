@@ -1,6 +1,7 @@
 /* additional reset css */
 body {
   min-height: auto;
+  color: #343434;
 }
 
 button {
@@ -15,7 +16,6 @@ button {
 #container {
   width: 200px;
   text-align: center;
-  color: #434343;
 }
 
 button {
