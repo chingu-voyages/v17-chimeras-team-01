@@ -1,29 +1,22 @@
 {
-  "name": "My tabs",
+  "name": "holdtabs",
   "version": "1.0.0",
-  "description": "This extension helps you reduce tab clutter!",
+  "description": "holdtabs stores your bunch of tabs",
   "manifest_version": 2,
   "icons": {
     "16": "icons/icon16.png",
-    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
   "browser_action": {
-    "default_icon": "icons/icon16.png",
-    "default_title": "My tabs",
+    "default_icon": {
+      "19": "icons/icon19.png",
+      "38": "icons/icon38.png"
+    },
+    "default_title": "holdtabs",
     "default_popup": "popup.html"
   },
-  "permissions": [
-    "tabs",
-    "chrome://favicon/",
-    "storage"
-    // "contextMenus",
-
-    //check those are needed or not
-    //"http://*/*",
-    //"https://*/*",
-    //"activeTab"
-  ],
+  "permissions": ["tabs", "chrome://favicon/", "storage"],
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
