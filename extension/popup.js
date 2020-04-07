@@ -6,111 +6,128 @@ const container = document.getElementById('container')
 // --------------------------------
 
 // current tab button
-function createCurrentTabButton () {
+function createCurrentButton () {
   const currentTabButton = document.createElement('button')
   const currentTabButtonText = document.createTextNode('save current tab')
   currentTabButton.id = 'current-tab'
   currentTabButton.appendChild(currentTabButtonText)
   container.appendChild(currentTabButton)
 
-  currentTabButton.addEventListener('click', storeCurrentTab, false)
+  currentTabButton.addEventListener('click', storeTab, false)
 }
-createCurrentTabButton()
 
 // all tab button
-function createAllTabButton () {
+function createAllButton () {
   const allTabsButton = document.createElement('button')
   const allTabsButtonText = document.createTextNode('save all tabs')
   allTabsButton.id = 'all-tabs'
   allTabsButton.appendChild(allTabsButtonText)
   container.appendChild(allTabsButton)
 
-  allTabsButton.addEventListener('click', storeAllTab, false)
+  allTabsButton.addEventListener('click', storeTab, false)
 }
-createAllTabButton()
+
+// --------------------------------
+// check stored data for second pushing button
+// --------------------------------
+
+// get stored data
+function getStoredData (f, e) {
+  chrome.storage.local.get(['stock'], function (data) {
+    let stock = data.stock === undefined ? [] : data.stock // eslint-disable-line
+    f(stock, e)
+  })
+}
+
+// check whether past data exsist or not
+function returnLinksNumber (stock) {
+  let checker = 0 // eslint-disable-line
+  if (stock.length) {
+    let len = (stock.length - 1) // eslint-disable-line
+    checker = stock[len].id.replace(/[^0-9^.]/g, '')
+  }
+  let n = [] // eslint-disable-line
+  n.push({ checker })
+  chrome.storage.local.set({ n })
+}
+
+// road first
+document.addEventListener('DOMContentLoaded', function () {
+  getStoredData(returnLinksNumber)
+  createCurrentButton()
+  createAllButton()
+})
 
 // --------------------------------
 // for first eventlisteners
 // --------------------------------
 
-// common function for two buttons for storing data to chrome storage
-function dataDetail (tabs, i, stock) {
-  const t = tabs[i]
-  const id = `data-${i}`
-  const src = `chrome://favicon/${t.url}`
-  const title = `${t.title}`
-  const url = t.url
-  stock.push({ id, src, title, url })
+// for first action BEFORE delay
+function nextItems () {
+  while (container.firstChild) {
+    container.removeChild(container.firstChild)
+  }
+  createNoticeText()
+  createToOptionsButton()
 }
 
-function storeData (queryOption = { }) {
-  chrome.tabs.query(queryOption, function (tabs) {
-    let stock = [] // eslint-disable-line
-    if (queryOption !== { }) {
-      for (const i in tabs) {
-        dataDetail(tabs, i, stock)
-      }
-    } else {
-      dataDetail(tabs, 0, stock)
-    }
+// for second action AFTER delay
+// get stored data if existing
+function firstEvent (e) {
+  getStoredData(getCheckNumber, e)
+}
 
-    chrome.storage.local.set({ stock })
+// get the number for checking the number of stored links
+function getCheckNumber (stock, e) {
+  chrome.storage.local.get(['n'], function (data) {
+    let n = data.n ? data.n[0].checker : 0 // eslint-disable-line
+    storeLinksData(n, stock, e)
   })
 }
 
 // store data to chrome storage
-const queryOption = { active: true, currentWindow: true }
-function storeLinkData () {
-  storeData(queryOption)
-  // chrome.tabs.query({ active: true, currentWindow: true }, function (tab) {
-  //   let stock = [] // eslint-disable-line
-  //   const t = tab[0]
-  //   const id = 'data-0'
-  //   const src = `chrome://favicon/${t.url}`
-  //   const title = `${t.title}`
-  //   const url = t.url
-  //   stock.push({ id, src, title, url })
-
-  //   chrome.storage.local.set({ stock })
-  // })
-}
-
-// store all data to chrome storage
-function storeLinksData () {
-  storeData()
-  // chrome.tabs.query({ }, function (tabs) {
-  //   let stock = [] // eslint-disable-line
-  //   for (const i in tabs) {
-  //     const t = tabs[i]
-  //     const id = `data-${i}`
-  //     const src = `chrome://favicon/${t.url}`
-  //     const title = `${t.title}`
-  //     const url = t.url
-  //     stock.push({ id, src, title, url })
-  //   }
-
-  //   chrome.storage.local.set({ stock })
-  // })
-}
-
-// for click event of current tab
-function storeCurrentTab () {
-  storeLinkData()
-  while (container.firstChild) {
-    container.removeChild(container.firstChild)
+function storeLinksData (n, stock, e) {
+  if (e.target.id === 'current-tab') {
+    const queryOption = { active: true, currentWindow: true }
+    storeData(n, stock, queryOption)
+  } else {
+    storeData(n, stock)
   }
-  createNoticeText()
-  createToOptionsButton()
 }
 
-// for click event of all tabs
-function storeAllTab () {
-  storeLinksData()
-  while (container.firstChild) {
-    container.removeChild(container.firstChild)
-  }
-  createNoticeText()
-  createToOptionsButton()
+function storeData (n, stock, queryOption = { }) {
+  chrome.tabs.query(queryOption, function (tabs) {
+    if (queryOption !== { }) {
+      for (const i in tabs) {
+        dataDetail(n, tabs, stock, i)
+      }
+    } else {
+      dataDetail(n, tabs, stock)
+    }
+    chrome.storage.local.set({ stock })
+  })
+}
+
+// common function for two buttons for storing data to chrome storage
+function dataDetail (n, tabs, stock, i) {
+  let number = i ? parseInt(n) + parseInt(i) + 1 : n // eslint-disable-line
+
+  let t = i ? tabs[i] : tabs[n]  // eslint-disable-line
+  const id = `data-${number}`
+  const src = `chrome://favicon/${t.url}`
+  const title = `${t.title}`
+  const url = t.url
+
+  stock.push({ id, src, title, url })
+}
+
+// async await
+// for click event of current tab or all tabs
+const delayTimes = (s) => new Promise(resolve => setTimeout(resolve, s))
+const storeTab = async (e) => {
+  nextItems()
+  await delayTimes(100)
+  firstEvent(e)
 }
 
 // -----------------------------------------
@@ -137,10 +154,7 @@ function createToOptionsButton () {
   toOptionsButton.addEventListener('click', toOptionsPage, false)
 }
 
-// --------------------------------
 // for second eventlisteners
-// --------------------------------
-
 function toOptionsPage () {
   chrome.runtime.openOptionsPage()
 }
