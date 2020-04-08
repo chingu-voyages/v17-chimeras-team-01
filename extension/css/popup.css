@@ -1,0 +1,42 @@
+/* additional reset css */
+body {
+  min-height: auto;
+  color: #343434;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+}
+
+/* specific css */
+#container {
+  width: 200px;
+  text-align: center;
+}
+
+button {
+  width: 100%;
+  background: #ffffff;
+  padding: 15px;
+  transition: background 0.2s;
+  font-size: 14px;
+}
+
+#current-tab {
+  border-bottom: 1px solid #dddddd;
+}
+
+button:hover {
+  background: #eeeeee;
+}
+
+#notice {
+  padding: 3px 0;
+  width: 100%;
+  background: #555555;
+  color: #eeeeee;
+}

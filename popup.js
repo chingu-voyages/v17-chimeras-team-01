@@ -6,7 +6,7 @@ function listTabs(tabs) {
     let title = tab.title || url;
 
     let li = document.createElement("li");
-    li.className = "list-item";
+    li.className = "list-item " + (tab.selected ? "selected" : "");
 
     let img = document.createElement("img");
     if (favicon) img.src = favicon;
@@ -24,13 +24,35 @@ function listTabs(tabs) {
     li.appendChild(img);
     li.appendChild(link);
     link.appendChild(closeBtn);
-    let list = document.querySelector("#list");
 
+    li.tabId = tab.id;
     list.appendChild(li);
+  });
+
+  events();
+}
+
+function events() {
+  list.addEventListener("click", function(e) {
+    closeTab(e, e.target.parentElement.parentElement);
+  });
+
+  list.addEventListener("click", function(e) {
+    chrome.tabs.update(e.target.parentElement.tabId, { selected: true });
   });
 }
 
+// Remove Tabs
+function closeTab(e, tab) {
+  if (e.target.className === "close") {
+    tab = list.removeChild(tab);
+    chrome.tabs.remove(tab.tabId);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function() {
+  let list = document.querySelector("#list");
+
   // Handler when the DOM is fully loaded
-  chrome.tabs.query({}, listTabs);
+  chrome.tabs.query({ currentWindow: true }, listTabs);
 });
