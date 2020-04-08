@@ -188,7 +188,7 @@ body {
 .extension-name {
   font-family: "Teko", sans-serif;
   font-size: 80px;
-  color: #5f52fb;
+  color: #1b8f68;
   line-height: 1;
 }
 
@@ -211,10 +211,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px;
+  width: 310px;
   height: 60px;
   margin: 20px 0;
-  background: #5f52fb;
+  background: #1b8f68;
   font-size: 18px;
   border-radius: 10px;
   color: #ffffff;
@@ -222,7 +222,7 @@ body {
 }
 
 .download-link:hover {
-  background: #ff6347;
+  background: #115b7b;
   transition: background 0.5s;
 }
 
