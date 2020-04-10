@@ -11,7 +11,7 @@ function getStoredData () {
     const outsideLinksLi = document.createElement('li')
     outsideLinksLi.className = 'outside-links-li'
     const insideLinksUl = document.createElement('ul')
-    insideLinksUl.id = 'intside-links-ul'
+    insideLinksUl.id = 'inside-links-ul'
 
     // create each link of tabs
     const allStockedData = Array.from(data.stock)
@@ -53,14 +53,25 @@ function getStoredData () {
     insideLinksUl.appendChild(fragment)
     outsideLinksLi.appendChild(insideLinksUl)
     outsideLinksUl.appendChild(outsideLinksLi)
+
+    // display text if there is no link
+    displayNoLink()
   })
+}
+
+// display text if there is no link
+function displayNoLink () {
+  const noLink = outsideLinksUl.firstChild.firstChild.firstChild
+  if (!!noLink === false) {  // eslint-disable-line
+    const noLinkText = document.createTextNode('there is no link')
+    outsideLinksUl.firstChild.appendChild(noLinkText)
+  }
 }
 
 function createBase () {
   document.addEventListener('DOMContentLoaded', getStoredData, false)
 }
 
-// document.addEventListener('DOMContentLoaded', function () {
 // delete a clicked link
 function deleteLinks () {
   const definedDeleteButtons = Array.from(document.getElementsByClassName('delete-button'))
@@ -77,49 +88,21 @@ function deleteLinks () {
         const changedStock = stock.filter(d => d.id !== n)
         stock = changedStock
         chrome.storage.local.set({ stock })
-      // console.log(targetLink)
-      // console.log(n)
-      // if (stock.id === null) { console.log('hi') }
       })
-      e.stopImmediatePropagation()
-
-      // if (definedDeleteButtons.length) {
-      // for (let i = definedDeleteButtons.length; i >= 0; i--) {
       if (e.target) {
-        if (outsideLinksUl.children.length === 0) {
-          const noLink = document.createTextNode('there is no link')
-          outsideLinksUl.appendChild(noLink)
-        } else { console.log('something happening') }
+        // display text if there is no link
+        displayNoLink()
       }
-      //   break
-      // }
-      // }
-      // chrome.storage.local.clear()
-    // if (link === null) { console.log('hi') } // chrome.storage.local.clear()
+      e.stopImmediatePropagation()
     }, false)
   }
   definedDeleteButtons.forEach(link => deleteLink(link))
-  // definedDeleteButtons.length ? console.log('still there') : console.log('no more!')
-  // for (let i = 1, len = definedDeleteButtons.length; i < len; i++) {
-  // definedDeleteButtons != null ? console.log('still there') : console.log('no more!')
-  // }
 }
-
-// if (definedDeleteButtons === null) { console.log('hi') } // chrome.storage.local.clear()
-// }, false)
-
-// function checkExistingLinks () {
-//   for (let i = 0, len = links.children.length; i < len; i++) {
-//     links.children ? console.log(links.children.length) : console.log('0!')
-//   }
-// }
 
 const delayTimes = (s) => new Promise(resolve => setTimeout(resolve, s))
 const setFunction = async () => {
   createBase()
   await delayTimes(100)
   deleteLinks()
-  // await delayTimes(100)
-  // checkExistingLinks()
 }
 setFunction()
