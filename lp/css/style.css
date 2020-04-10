@@ -1,16 +1,16 @@
 html,
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   letter-spacing: 0.05em;
   color: #444444;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
 }
 
-.wrapper {
-}
-
-.tab-bg {
-}
-
+/* ================== */
+/* for top tab illust */
+/* ================== */
 .upper__inner,
 .lower__inner {
   display: flex;
@@ -21,7 +21,7 @@ body {
 
 .upper {
   background: #e3e5e9;
-  height: 80px;
+  height: 60px;
   width: 100%;
 }
 
@@ -35,11 +35,11 @@ body {
   justify-content: space-between;
   height: 100%;
   align-items: center;
-  margin-right: 80px;
+  margin-right: 30px;
 }
 .browser-button {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   margin-right: 10px;
 }
@@ -64,23 +64,23 @@ body {
 }
 
 .compressed-tab {
-  width: 4px;
+  width: 2px;
   height: 60%;
-  background: #444444;
+  background: #999999;
   margin-right: 15px;
 }
 
 .common-cross-mark {
-  width: 5px;
-  height: 30px;
+  width: 3px;
+  height: 20px;
   background: #444444;
   position: relative;
 }
 .common-cross-mark:before {
   content: "";
   position: absolute;
-  width: 5px;
-  height: 30px;
+  width: 3px;
+  height: 20px;
   background: #444444;
   transform: rotate(90deg);
 }
@@ -92,7 +92,7 @@ body {
 .add-close-block {
   display: flex;
   align-items: center;
-  height: 80%;
+  height: 85%;
   margin-left: auto;
   margin-right: 60px;
 }
@@ -100,13 +100,13 @@ body {
 .single-tab {
   height: 100%;
   position: relative;
-  margin: 0 40px;
+  margin: 0 30px;
 }
 
 .single-tab-deco {
   position: relative;
   display: flex;
-  width: 70px;
+  width: 50px;
   height: 100%;
   justify-content: center;
   align-items: center;
@@ -156,8 +156,8 @@ body {
 
 .lower {
   background: #ffffff;
-  border-bottom: 4px solid #e3e5e9;
-  padding: 15px 0;
+  border-bottom: 2px solid #e3e5e9;
+  padding: 10px 0;
   position: relative;
 }
 
@@ -167,58 +167,83 @@ body {
 
 .searchbox {
   width: 80%;
-  height: 60px;
+  height: 35px;
   margin-right: auto;
   background: #eef1f3;
   border-radius: 30px;
 }
+
 .extension-icon__s {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
 }
 
-.extension-img {
+/* ================== */
+/* for animation      */
+/* ================== */
+.extension-img__s {
   position: absolute;
   width: 230px;
-  top: 65px;
+  top: 50px;
   right: 50px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.extension-img__l {
+  width: 800px;
+  margin: 0 auto;
 }
 
 .extension-name {
   font-family: "Teko", sans-serif;
   font-size: 80px;
+  font-weight: normal;
   color: #1b8f68;
   line-height: 1;
+  text-align: center;
+  margin-bottom: 10px;
+  letter-spacing: 0;
 }
 
 .extension-icon__l {
   display: inline-block;
   width: 60px;
   height: 60px;
+  margin-left: 12px;
 }
 
 .service-info {
-  width: 90%;
-  margin: 12vh auto;
+  width: 320px;
+  margin: 20vh auto 60px;
+  text-align: center;
 }
 
+.hidden {
+  display: none;
+}
+
+/* ================== */
+/* for main part      */
+/* ================== */
 .explain-details {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .download-link {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 310px;
-  height: 60px;
-  margin: 20px 0;
+  width: 320px;
+  height: 50px;
+  margin: 30px 0 0;
   background: #1b8f68;
-  font-size: 18px;
-  border-radius: 10px;
+  border-radius: 5px;
   color: #ffffff;
   text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .download-link:hover {
@@ -226,18 +251,41 @@ body {
   transition: background 0.5s;
 }
 
+/* ================== */
+/* copyright          */
+/* ================== */
 .dev-name {
   display: block;
   text-align: center;
+  margin: auto auto 40px;
+}
+
+@media screen and (min-width: 601px) and (max-width: 890px) {
+  /* ================== */
+  /* for main part      */
+  /* ================== */
+  .service-info {
+    width: 80%;
+  }
+
+  .extension-name,
+  .explain-details {
+    text-align: left;
+  }
 }
 
 @media only screen and (max-width: 600px) {
+  /* ================== */
+  /* for top tab illust */
+  /* ================== */
   .upper {
     height: 50px;
   }
+
   .browser-buttons {
     margin-right: 20px;
   }
+
   .browser-button {
     width: 20px;
     height: 20px;
@@ -249,7 +297,6 @@ body {
   }
 
   .compressed-tab {
-    width: 3px;
     margin-right: 10px;
   }
 
@@ -311,11 +358,16 @@ body {
   }
 
   .extension-icon__s {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
+
+  /* ================== */
+  /* for main part      */
+  /* ================== */
   .service-info {
-    width: 80%;
+    width: 85%;
+    margin: 12vh auto 20px;
   }
 
   .explain-details {
@@ -323,14 +375,22 @@ body {
     margin: 20px 0 40px;
   }
 
+  .br {
+    display: none;
+  }
+
   .download-link {
     width: 100%;
     font-size: 20px;
   }
 
+  /* ================== */
+  /* copyright          */
+  /* ================== */
   .dev-name {
     width: 80%;
     font-size: 20px;
-    margin: 0 auto;
+    margin: auto auto 30px;
+    font-size: 18px;
   }
 }

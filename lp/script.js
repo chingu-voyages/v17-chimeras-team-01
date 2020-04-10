@@ -55,7 +55,7 @@ function addTabs () {
 
   let n = 0;  // eslint-disable-line
   if (window.innerWidth > 600) {
-    n = Math.floor((DivWidth - 200 - 210) / 19)
+    n = Math.floor((DivWidth - 200 - 70) / 17)
   } else {
     n = Math.floor((DivWidth - 106 - 100) / 13)
   }
@@ -96,3 +96,72 @@ SingleTabDeco.appendChild(CommonCrossMark)
 const CommonCrossMarkRotate = document.createElement('div')
 CommonCrossMarkRotate.className = 'common-cross-mark'
 AddCloseBlock.appendChild(CommonCrossMarkRotate)
+
+// -----------------
+// animation
+// -----------------
+function explain () {
+  const exPlace = document.getElementById('extension-action')
+  const lastPlace = document.getElementById('main')
+  const mainItem = document.getElementById('service-info')
+  const exImg = ['images/extension-01.png', 'images/extension-02.png', 'images/extension-03.png']
+
+  // around extension
+  function createExImg (i) {
+    if (exPlace.firstChild) {
+      exPlace.removeChild(exPlace.firstChild)
+    }
+    const img = document.createElement('img')
+    img.alt = 'extension image'
+    img.className = 'extension-img extension-img__s'
+    img.src = exImg[i]
+    exPlace.appendChild(img)
+  }
+
+  // appear in main block
+  function createOptionImg () {
+    if (exPlace.firstChild) {
+      exPlace.removeChild(exPlace.firstChild)
+    }
+    mainItem.className = 'hidden'
+    const img = document.createElement('img')
+    img.alt = 'extension image'
+    img.className = 'extension-img extension-img__l'
+    img.src = exImg[2]
+    lastPlace.appendChild(img)
+  }
+
+  // revert back
+  function toBeClear () {
+    if (document.querySelector('.extension-img__l')) {
+      lastPlace.removeChild(lastPlace.lastChild)
+      mainItem.className = 'service-info'
+    }
+  }
+
+  // set interval
+  let i = 0 // eslint-disable-line
+  let count = 0 // eslint-disable-line
+  let changeExImg = () => {  // eslint-disable-line
+    if (i < exImg.length - 1) {
+      createExImg(i)
+      i++
+      count++
+    } else if (i === exImg.length) {
+      toBeClear()
+      i = 0
+      count++
+    } else {
+      createOptionImg()
+      i++
+      count++
+    }
+    if (count >= 8) {
+      clearInterval(interval)
+    }
+  }
+
+  let interval = setInterval(changeExImg, 3000)  // eslint-disable-line
+}
+
+if (window.innerWidth > 600) { explain() }
