@@ -1,5 +1,6 @@
 /* additional reset css */
 body {
+  font-family: "Roboto Condensed", sans-serif;
   min-height: auto;
   color: #343434;
 }
@@ -23,7 +24,7 @@ button {
   background: #ffffff;
   padding: 15px;
   transition: background 0.2s;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 #current-tab {
@@ -37,6 +38,7 @@ button:hover {
 #notice {
   padding: 3px 0;
   width: 100%;
-  background: #555555;
+  background: #1b8f68;
   color: #eeeeee;
+  font-size: 14px;
 }
