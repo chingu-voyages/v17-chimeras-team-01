@@ -7,7 +7,7 @@
 **Hold Tabs** is a Chrome extension created by **v17-chimeras-team-01** team.  
 **Hold Tabs** stores your bunch of tabs.
 
-You can see the overview visually on [this LP]().
+You can see the overview visually on [`this LP`](https://chingu-voyages.github.io/v17-chimeras-team-01/).
 
 ## Features
 
@@ -19,16 +19,17 @@ You can see the overview visually on [this LP]().
 
 ## Chrome extension Installation
 
-1. download "extension" folder
-2. add the folder on Manage Extension page (chrome://extensions/)  
-   \*see more about [installation](https://developer.chrome.com/extensions/getstarted)
+1. download `extension` folder
+2. add the folder to `Manage Extension page` (chrome://extensions/)  
+   \*see more about [installation](https://developer.chrome.com/extensions/getstarted) if you need
 
 ## LP
 
 This project also has an LP.  
-You can see the page from here.  
-branch: [GitHub](https://github.com/chingu-voyages/v17-chimeras-team-01/tree/lp)  
-Live DEMO: [Hold Tab LP]()
+You can see the page from here.
+
+- code: in `docs` folder
+- Live DEMO: **[Hold Tab LP](https://chingu-voyages.github.io/v17-chimeras-team-01/)**
 
 ## Tech Used / Dependencies
 
@@ -40,13 +41,13 @@ HTML / CSS / Vanilla JavaScript
 - Fonts: [Google Fonts](https://fonts.google.com/)
 - Icons: [material icon](https://material.io/resources/icons/)
 
-## Our team
+## Contributors
 
-- [Keiko](https://github.com/web-tama) (Implement main functions and LP)
+- [Keiko](https://github.com/web-tama) (Implement main function of this extension, LP and design)
 
-#### part of contributer
+#### Contributors until the middle part of this project
 
-- [Jo Morales](https://github.com/jmoralesg) (Base built)
+- [Jo Morales](https://github.com/jmoralesg) (Built base)
 - [Jinyoung Park](https://github.com/jypark0407) (UX/UI)
 
 ## prototype
