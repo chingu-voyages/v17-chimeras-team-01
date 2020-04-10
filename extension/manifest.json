@@ -14,11 +14,11 @@
       "38": "icons/icon38.png"
     },
     "default_title": "Hold Tabs",
-    "default_popup": "popup.html"
+    "default_popup": "html/popup.html"
   },
   "permissions": ["tabs", "chrome://favicon/", "storage"],
   "options_ui": {
-    "page": "options.html",
+    "page": "html/options.html",
     "open_in_tab": true
   }
 }

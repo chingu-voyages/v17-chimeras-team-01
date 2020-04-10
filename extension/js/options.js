@@ -36,7 +36,7 @@ function getStoredData () {
       const deleteButton = document.createElement('button')
       const deleteButtonImage = document.createElement('img')
       deleteButton.className = 'delete-button'
-      deleteButtonImage.src = 'img/clear-black-18dp.svg' // this is a material icon https://material.io/resources/icons
+      deleteButtonImage.src = '../img/clear-black-18dp.svg' // this is a material icon https://material.io/resources/icons
       deleteButtonImage.alt = 'clear button'
 
       // append elements
