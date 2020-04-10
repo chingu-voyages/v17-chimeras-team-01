@@ -1,7 +1,7 @@
 {
-  "name": "holdtabs",
+  "name": "Hold Tabs",
   "version": "1.0.0",
-  "description": "holdtabs stores your bunch of tabs",
+  "description": "Hold Tabs stores your bunch of tabs",
   "manifest_version": 2,
   "icons": {
     "16": "icons/icon16.png",
@@ -13,7 +13,7 @@
       "19": "icons/icon19.png",
       "38": "icons/icon38.png"
     },
-    "default_title": "holdtabs",
+    "default_title": "Hold Tabs",
     "default_popup": "popup.html"
   },
   "permissions": ["tabs", "chrome://favicon/", "storage"],
