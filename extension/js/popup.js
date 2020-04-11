@@ -67,8 +67,8 @@ function nextItems () {
   while (container.firstChild) {
     container.removeChild(container.firstChild)
   }
-  createNoticeText()
-  createToOptionsButton()
+  // createNoticeText()
+  createToOptionsButton(createNoticeText)
 }
 
 // for second action AFTER delay
@@ -150,19 +150,20 @@ const storeTab = async (e) => {
 // -----------------------------------------
 
 // notice word after clicking a button
-function createNoticeText () {
-  const notice = document.createElement('p')
-  const noticeText = document.createTextNode('saved!')
+function createNoticeText (toOptionsButton) {
+  const notice = document.createElement('span')
+  const noticeText = document.createTextNode('\\ saved! /')
   notice.id = 'notice'
   notice.appendChild(noticeText)
-  container.appendChild(notice)
+  toOptionsButton.appendChild(notice)
 }
 
 // to options page button
-function createToOptionsButton () {
+function createToOptionsButton (f) {
   const toOptionsButton = document.createElement('button')
   const toOptionsButtonText = document.createTextNode('browse the saved tabs')
-  toOptionsButtonText.id = 'to-option'
+  toOptionsButton.id = 'to-option'
+  f(toOptionsButton)
   toOptionsButton.appendChild(toOptionsButtonText)
   container.appendChild(toOptionsButton)
 

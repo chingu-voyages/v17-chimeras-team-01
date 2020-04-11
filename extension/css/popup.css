@@ -9,8 +9,21 @@ button {
   border: none;
   cursor: pointer;
   outline: none;
-  padding: 0;
+  -webkit-appearance: none;
   appearance: none;
+  width: 100%;
+  background: #ffffff;
+  padding: 15px;
+  transition: background 0.2s;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+button:hover {
+  background: #eeeeee;
 }
 
 /* specific css */
@@ -19,26 +32,16 @@ button {
   text-align: center;
 }
 
-button {
-  width: 100%;
-  background: #ffffff;
-  padding: 15px;
-  transition: background 0.2s;
-  font-size: 16px;
-}
-
 #current-tab {
   border-bottom: 1px solid #dddddd;
 }
 
-button:hover {
-  background: #eeeeee;
+#to-option {
+  padding: 12px 0 15px;
 }
 
 #notice {
-  padding: 3px 0;
-  width: 100%;
-  background: #1b8f68;
-  color: #eeeeee;
+  color: #1b8f68;
+  display: block;
   font-size: 14px;
 }
