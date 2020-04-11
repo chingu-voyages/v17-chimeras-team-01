@@ -121,6 +121,20 @@ function dataDetail (n, tabs, stock, i) {
   stock.push({ id, src, title, url })
 }
 
+// refresh options.html every links are added
+function refreshOptions () {
+  chrome.storage.onChanged.addListener(function () {
+    chrome.tabs.query({ }, function (tabs) {
+      for (const i in tabs) {
+        const options = /^chrome-extension:\/\/[\w-].*\/options\.html$/gi
+        if (options.test(tabs[i].url)) {
+          chrome.tabs.reload(tabs[i].id)
+        }
+      }
+    })
+  })
+}
+
 // async await
 // for click event of current tab or all tabs
 const delayTimes = (s) => new Promise(resolve => setTimeout(resolve, s))
@@ -128,6 +142,7 @@ const storeTab = async (e) => {
   nextItems()
   await delayTimes(100)
   firstEvent(e)
+  refreshOptions()
 }
 
 // -----------------------------------------
