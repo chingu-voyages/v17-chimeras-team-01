@@ -104,7 +104,7 @@ function explain () {
   const exPlace = document.getElementById('extension-action')
   const lastPlace = document.getElementById('main')
   const mainItem = document.getElementById('service-info')
-  const exImg = ['images/extension-01.png', 'images/extension-02.png', 'images/extension-03.png']
+  const exImg = ['images/extension-01.png', 'images/extension-02.png', 'images/extension-03.png', 'images/extension-04.png', 'images/extension-05_a.png', 'images/extension-05_b.png']
 
   // around extension
   function createExImg (i) {
@@ -123,7 +123,7 @@ function explain () {
     const img = document.createElement('img')
     img.alt = 'extension image'
     img.className = 'extension-img extension-img__l'
-    img.src = exImg[2]
+    img.src = window.innerWidth < 1200 ? exImg[4] : exImg[5]
     if (exPlace.firstChild) {
       exPlace.removeChild(exPlace.firstChild)
     }
@@ -143,11 +143,11 @@ function explain () {
   let i = 0 // eslint-disable-line
   let count = 0 // eslint-disable-line
   let changeExImg = () => {  // eslint-disable-line
-    if (i < exImg.length - 1) {
+    if (i < exImg.length - 2) {
       createExImg(i)
       i++
       count++
-    } else if (i === exImg.length) {
+    } else if (i === exImg.length - 1) {
       toBeClear()
       i = 0
       count++
@@ -156,12 +156,12 @@ function explain () {
       i++
       count++
     }
-    if (count >= 8) {
+    if (count >= 6) {
       clearInterval(interval)
     }
   }
 
-  let interval = setInterval(changeExImg, 3000)  // eslint-disable-line
+  let interval = setInterval(changeExImg, 2000)  // eslint-disable-line
 }
 
 if (window.innerWidth > 600) { explain() }
