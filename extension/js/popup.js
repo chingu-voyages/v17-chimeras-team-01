@@ -51,12 +51,32 @@ function returnLinksNumber (stock) {
   chrome.storage.local.set({ n })
 }
 
+// display options button if there is stored links
+function appearOptionsButton () {
+  chrome.storage.local.get(['n'], function (data) {
+    let n = data.n ? data.n[0].checker : 0 // eslint-disable-line
+    if (n !== 0) {
+      console.log(n)
+      createToOptionsButton(addClassToOptionButton)
+    }
+  })
+}
+
+function addClassToOptionButton (toOptionsButton) {
+  toOptionsButton.id = 'first-to-option'
+}
+
+// async await
 // road first
-document.addEventListener('DOMContentLoaded', function () {
+const delayTimes = (s) => new Promise(resolve => setTimeout(resolve, s))
+const startDisplay = async () => {
   getStoredData(returnLinksNumber)
   createCurrentButton()
   createAllButton()
-})
+  await delayTimes(10)
+  appearOptionsButton()
+}
+document.addEventListener('DOMContentLoaded', startDisplay)
 
 // --------------------------------
 // for first eventlisteners
@@ -137,7 +157,6 @@ function refreshOptions () {
 
 // async await
 // for click event of current tab or all tabs
-const delayTimes = (s) => new Promise(resolve => setTimeout(resolve, s))
 const storeTab = async (e) => {
   nextItems()
   await delayTimes(100)
@@ -151,6 +170,7 @@ const storeTab = async (e) => {
 
 // notice word after clicking a button
 function createNoticeText (toOptionsButton) {
+  toOptionsButton.id = 'second-to-option'
   const notice = document.createElement('span')
   const noticeText = document.createTextNode('\\ saved! /')
   notice.id = 'notice'
@@ -162,7 +182,6 @@ function createNoticeText (toOptionsButton) {
 function createToOptionsButton (f) {
   const toOptionsButton = document.createElement('button')
   const toOptionsButtonText = document.createTextNode('browse the saved tabs')
-  toOptionsButton.id = 'to-option'
   f(toOptionsButton)
   toOptionsButton.appendChild(toOptionsButtonText)
   container.appendChild(toOptionsButton)
