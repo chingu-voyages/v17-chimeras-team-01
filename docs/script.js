@@ -120,15 +120,15 @@ function explain () {
 
   // appear in main block
   function createOptionImg () {
-    if (exPlace.firstChild) {
-      exPlace.removeChild(exPlace.firstChild)
-    }
-    mainItem.className = 'hidden'
     const img = document.createElement('img')
     img.alt = 'extension image'
     img.className = 'extension-img extension-img__l'
     img.src = exImg[2]
+    if (exPlace.firstChild) {
+      exPlace.removeChild(exPlace.firstChild)
+    }
     lastPlace.appendChild(img)
+    mainItem.className = 'hidden'
   }
 
   // revert back
