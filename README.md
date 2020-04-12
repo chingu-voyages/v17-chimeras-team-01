@@ -1,11 +1,12 @@
 # Hold Tabs
 
-(Chrome extension + Introduction LP)
+(Chrome extension + Introduction LP)  
+<img src="lp-image.gif">
 
 ## Overview
 
 **Hold Tabs** is a Chrome extension created by **v17-chimeras-team-01** team.  
-**Hold Tabs** stores your bunch of tabs.
+**Hold Tabs** stores all opened tabs.
 
 You can see the overview visually on [`this LP`](https://chingu-voyages.github.io/v17-chimeras-team-01/).
 
@@ -43,12 +44,9 @@ HTML / CSS / Vanilla JavaScript
 
 ## Contributors
 
-- [Keiko](https://github.com/web-tama) (Implement main function of this extension, LP and design)
-
-#### Contributors until the middle part of this project
-
 - [Jo Morales](https://github.com/jmoralesg) (Built base)
 - [Jinyoung Park](https://github.com/jypark0407) (UX/UI)
+- [Keiko](https://github.com/web-tama) (Implement main function of this extension, LP and design)
 
 ## prototype
 
