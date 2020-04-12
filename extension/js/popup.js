@@ -172,7 +172,7 @@ const storeTab = async (e) => {
 function createNoticeText (toOptionsButton) {
   toOptionsButton.id = 'second-to-option'
   const notice = document.createElement('span')
-  const noticeText = document.createTextNode('\\ Saved! /')
+  const noticeText = document.createTextNode('\\ saved! /')
   notice.id = 'notice'
   notice.appendChild(noticeText)
   toOptionsButton.appendChild(notice)

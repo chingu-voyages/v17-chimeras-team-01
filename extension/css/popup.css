@@ -23,7 +23,8 @@ button {
 }
 
 button:hover {
-  background: #eeeeee;
+  /* opacity: 0.5; */
+  color: #1b8f68;
 }
 
 /* specific css */
@@ -37,15 +38,22 @@ button:hover {
 }
 
 #first-to-option {
-  border-top: 1px solid #dddddd;
+  background: #999999;
+  color: #ffffff;
+}
+
+#first-to-option:hover {
+  background: #75c5af;
+  /* opacity: 0.5; */
+  /* color: #efefef; */
 }
 
 #second-to-option {
-  padding: 12px 0 15px;
+  padding: 8px 0 25px;
 }
 
 #notice {
   color: #1b8f68;
   display: block;
-  font-size: 14px;
+  font-size: 12px;
 }
