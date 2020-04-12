@@ -8,7 +8,7 @@ const container = document.getElementById('container')
 // current tab button
 function createCurrentButton () {
   const currentTabButton = document.createElement('button')
-  const currentTabButtonText = document.createTextNode('save current tab')
+  const currentTabButtonText = document.createTextNode('Save Current Tab')
   currentTabButton.id = 'current-tab'
   currentTabButton.appendChild(currentTabButtonText)
   container.appendChild(currentTabButton)
@@ -19,7 +19,7 @@ function createCurrentButton () {
 // all tab button
 function createAllButton () {
   const allTabsButton = document.createElement('button')
-  const allTabsButtonText = document.createTextNode('save all tabs')
+  const allTabsButtonText = document.createTextNode('Save All Tabs')
   allTabsButton.id = 'all-tabs'
   allTabsButton.appendChild(allTabsButtonText)
   container.appendChild(allTabsButton)
@@ -172,7 +172,7 @@ const storeTab = async (e) => {
 function createNoticeText (toOptionsButton) {
   toOptionsButton.id = 'second-to-option'
   const notice = document.createElement('span')
-  const noticeText = document.createTextNode('\\ saved! /')
+  const noticeText = document.createTextNode('\\ Saved! /')
   notice.id = 'notice'
   notice.appendChild(noticeText)
   toOptionsButton.appendChild(notice)
@@ -181,7 +181,7 @@ function createNoticeText (toOptionsButton) {
 // to options page button
 function createToOptionsButton (f) {
   const toOptionsButton = document.createElement('button')
-  const toOptionsButtonText = document.createTextNode('browse the saved tabs')
+  const toOptionsButtonText = document.createTextNode('Browse The Saved Tabs')
   f(toOptionsButton)
   toOptionsButton.appendChild(toOptionsButtonText)
   container.appendChild(toOptionsButton)

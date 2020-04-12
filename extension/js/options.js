@@ -89,12 +89,11 @@ function checkNoLink (f) {
 
 // display no link text
 function displayNoLink () {
-  const noLinkText = document.createTextNode('there is no link')
+  const noLinkText = document.createTextNode('There is no link')
   if (!!outsideLinksUl.firstChild === false) {
     outsideLinksUl.appendChild(noLinkText)
   } else {
     outsideLinksUl.firstChild.appendChild(noLinkText)
-
   }
 }
 
