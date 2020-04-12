@@ -1,6 +1,7 @@
 /* additional reset css */
 body {
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: "Roboto Condensed", "Helvetica Neue", "Helvetica", "Arial",
+    sans-serif;
   min-height: auto;
   color: #343434;
   font-size: 16px;
