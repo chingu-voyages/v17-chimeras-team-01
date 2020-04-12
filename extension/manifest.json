@@ -1,0 +1,24 @@
+{
+  "name": "Hold Tabs",
+  "version": "1.0.0",
+  "description": "Hold Tabs stores your bunch of tabs",
+  "manifest_version": 2,
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "browser_action": {
+    "default_icon": {
+      "19": "icons/icon19.png",
+      "38": "icons/icon38.png"
+    },
+    "default_title": "Hold Tabs",
+    "default_popup": "html/popup.html"
+  },
+  "permissions": ["tabs", "chrome://favicon/", "storage"],
+  "options_ui": {
+    "page": "html/options.html",
+    "open_in_tab": true
+  }
+}

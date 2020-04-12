@@ -1,0 +1,57 @@
+/* additional reset css */
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  min-height: auto;
+  color: #343434;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  background: #ffffff;
+  padding: 15px;
+  transition: background 0.2s;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+button:hover {
+  /* opacity: 0.5; */
+  color: #1b8f68;
+}
+
+/* specific css */
+#container {
+  width: 200px;
+  text-align: center;
+}
+
+#current-tab {
+  border-bottom: 1px solid #dddddd;
+}
+
+#first-to-option {
+  background: #999999;
+  color: #ffffff;
+}
+
+#first-to-option:hover {
+  background: #75c5af;
+}
+
+#second-to-option {
+  padding: 8px 0 25px;
+}
+
+#notice {
+  color: #1b8f68;
+  display: block;
+  font-size: 12px;
+}
