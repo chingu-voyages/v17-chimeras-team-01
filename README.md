@@ -6,15 +6,15 @@
 ## Overview
 
 **Hold Tabs** is a Chrome extension created by **v17-chimeras-team-01** team.  
-**Hold Tabs** stores all opened tabs.
+**Hold Tabs** stores all tabs.
 
-You can see the overview visually on [`this LP`](https://chingu-voyages.github.io/v17-chimeras-team-01/).
+You can see the overview visually on **[`this LP`](https://chingu-voyages.github.io/v17-chimeras-team-01/)**.
 
 ## Features
 
 - store all tabs or current page tab every clicking the button
-- can see the list on the options page
-- can delete the each link
+- can see the link list on the options page
+- can delete the each link or all links
 
 \*Confidential link should not be stored. The storage used by this project isn't encrypted.
 
@@ -26,11 +26,10 @@ You can see the overview visually on [`this LP`](https://chingu-voyages.github.i
 
 ## LP
 
-This project also has an LP.  
-You can see the page from here.
+This project also has an LP.
 
 - code: in `docs` folder
-- Live DEMO: **[Hold Tab LP](https://chingu-voyages.github.io/v17-chimeras-team-01/)**
+- Live DEMO: **[`Hold Tab LP`](https://chingu-voyages.github.io/v17-chimeras-team-01/)**
 
 ## Tech Used / Dependencies
 
